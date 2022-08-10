@@ -1,6 +1,7 @@
 const Clarifai = require('clarifai');
-// import { json } from 'express/lib/response';
 
+
+//Add your own Clarifai API KEY below here 
 const app = new Clarifai.App({
 	apiKey: '1c750faf49274fe5a5ef4fcd0603653c'
 });
