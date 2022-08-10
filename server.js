@@ -10,6 +10,7 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 
+//Added connection string to database URL
  const db = knex({
     client: 'pg',
     connection: {
