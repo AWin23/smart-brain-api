@@ -10,14 +10,16 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+
 //Added connection string to database URL
- const db = knex({
+const db = knex({
     client: 'pg',
     connection: {
-      connectionString : process.env.DATABASE_URL, 
-      ssl: true,
+        connectionString: process.env.DATABASE_URL,
+        ssl: true,
     }
-  });
+});
 
 
 
@@ -49,18 +51,18 @@ const database = {
 app.use(cors())
 app.use(bodyParser.json());
 
-app.get('/', (req, res)=> { res.send('it is working');})
+app.get('/', (req, res) => { res.send('it is working'); })
 
 //Bcrypt generates a hash and stores it(the user password)
-app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)} )
-app.post('/register',(req, res) => {register.handleRegister(req,res, db, bcrypt) })
-app.get('/profile/:id' , (req, res ) => {profile.handleProfileGet(req,res,db)})
-app.put('/image', (req, res) => {image.handleImage(req,res,db)})
-app.post('/imageurl', (req, res) => {image.handleApiCall(req,res)})
+app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) })
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
+app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) })
+app.put('/image', (req, res) => { image.handleImage(req, res, db) })
+app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
 
 //Listening port
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 3001, () => {
     console.log(`app is running on port ${process.env.PORT}`);
 })
 
